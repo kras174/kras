@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,8 @@ namespace Lesson2
 
                 numberOfTries--;
             }
-            while (!CheckAuthorization() && numberOfTries != 0);
-            //while (!CheckAuthorizationFile() && numberOfTries != 0) ;
+            //while (!CheckAuthorization() && numberOfTries != 0);
+            while (!CheckAuthorizationFile() && numberOfTries != 0);
         }
 
         private bool CheckAuthorization()
@@ -47,9 +48,37 @@ namespace Lesson2
             }
         }
 
-        //internal bool CheckAuthorizationFile()
-        //{
-            
-        //}
+        internal bool CheckAuthorizationFile()
+        {
+            bool result = false;
+            try
+            {
+                StreamReader lg = new StreamReader("logins.txt");
+                StreamReader ps = new StreamReader("pass.txt");
+                string lineLogin, linePass;
+                while (((lineLogin = lg.ReadLine()) != null) && ((linePass = ps.ReadLine()) != null))
+                {
+                    if ((this.login != lineLogin) || (this.password != linePass))
+                    {
+                        result = false;
+                    }
+                    else
+                    {
+                        result = true;
+                        break;
+                    }
+                 }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+            if (result) Console.WriteLine("Вход выполнен!");
+            else Console.WriteLine("Неверный логин или пароль!");
+            return result;
+        }
     }
 }
