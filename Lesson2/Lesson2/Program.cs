@@ -31,10 +31,16 @@ namespace Lesson2
             //----------------------------------------------------------------------
 
             //--Домашнее задание А. Авторизация пользователя
-            Authorization user1 = new Authorization();
-            user1.startAuthorization(2); // 1-авторизация из программы; 2-авторизация из файла.
-            Console.WriteLine("Нажмите любую клавишу...");
+            //Authorization user1 = new Authorization();
+            //user1.startAuthorization(2); // 1-авторизация из программы; 2-авторизация из файла.
+            //Console.WriteLine("Нажмите любую клавишу...");
             //----------------------------------------------------------------------
+
+            //--Домашнее задание B. Простой калькулятор
+            int a, b;
+            a = inData(1);
+            b = inData(2);
+            Calculator(a,b);
 
             Console.ReadLine();
         }
@@ -96,6 +102,40 @@ namespace Lesson2
             while (n != 0);
 
             Console.WriteLine("Сумма всех нечётных положительных чисел равна: " + result);
+        }
+
+        //-----Простой калькулятор
+        static void Calculator(int a, int b)
+        {
+            var result = 0;
+            char c = ' ';
+            Console.WriteLine("Введите знак операции над числами (+,-,*,/): ");
+            c = Convert.ToChar(Console.ReadLine());
+            if (c == '+')
+            {
+                result = a + b;
+                Console.WriteLine("Сумма равна: " + result);
+            }
+            else if (c == '-')
+            {
+                result = a - b;
+                Console.WriteLine("Разность равна: " + result);
+            }
+            else if (c == '*')
+            {
+                result = a * b;
+                Console.WriteLine("Умножение равно: " + result);
+            }
+            else if (c == '/')
+            {
+                if (b != 0)
+                {
+                    result = a / b;
+                    Console.WriteLine("Деление равно: " + result);
+                }
+                else Console.WriteLine("На ноль делить нельзя!");
+            }
+            else Console.WriteLine("Нет такой операции!");
         }
     }
 }
