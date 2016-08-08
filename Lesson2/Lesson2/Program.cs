@@ -32,7 +32,7 @@ namespace Lesson2
 
             //--Домашнее задание А. Авторизация пользователя
             Authorization user1 = new Authorization();
-            user1.startAuthorization();
+            user1.startAuthorization(2); // 1-авторизация из программы; 2-авторизация из файла.
             Console.WriteLine("Нажмите любую клавишу...");
             //----------------------------------------------------------------------
 

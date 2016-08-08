@@ -12,9 +12,43 @@ namespace Lesson2
         string login;
         string password;
 
-        internal void startAuthorization()
+        internal void startAuthorization(int Method)
         {
             int numberOfTries = 3;
+            switch (Method)
+            {
+                case 1:
+                    do
+                    {
+                        if (numberOfTries != 3) Console.WriteLine("Осталось попыток: " + numberOfTries);
+
+                        Console.WriteLine("Введите логин:");
+                        login = Console.ReadLine();
+
+                        Console.WriteLine("Введите пароль:");
+                        password = Console.ReadLine();
+
+                        numberOfTries--;
+                    }
+                    while (!CheckAuthorization() && numberOfTries != 0);
+                    break;
+                case 2:
+                    do
+                    {
+                        if (numberOfTries != 3) Console.WriteLine("Осталось попыток: " + numberOfTries);
+
+                        Console.WriteLine("Введите логин:");
+                        login = Console.ReadLine();
+
+                        Console.WriteLine("Введите пароль:");
+                        password = Console.ReadLine();
+
+                        numberOfTries--;
+                    }
+                    while (!CheckAuthorizationFile() && numberOfTries != 0);
+                    break;
+            }
+
             do
             {
                 if (numberOfTries != 3) Console.WriteLine("Осталось попыток: " + numberOfTries);
@@ -31,6 +65,7 @@ namespace Lesson2
             while (!CheckAuthorizationFile() && numberOfTries != 0);
         }
 
+        //----Авторизация пользователя из программы (Домашнее задание А)
         private bool CheckAuthorization()
         {
             const string login = "User";
@@ -48,6 +83,7 @@ namespace Lesson2
             }
         }
 
+        //----Авторизация пользователя из файла (Домашнее задание А*)
         internal bool CheckAuthorizationFile()
         {
             bool result = false;
@@ -55,6 +91,7 @@ namespace Lesson2
             {
                 StreamReader lg = new StreamReader("logins.txt");
                 StreamReader ps = new StreamReader("pass.txt");
+
                 string lineLogin, linePass;
                 while (((lineLogin = lg.ReadLine()) != null) && ((linePass = ps.ReadLine()) != null))
                 {
