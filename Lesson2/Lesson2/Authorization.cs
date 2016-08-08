@@ -8,15 +8,34 @@ namespace Lesson2
 {
     class Authorization
     {
-        public string login;
-        public string password;
+        string login;
+        string password;
 
-        internal bool CheckAuthorization()
+        internal void startAuthorization()
+        {
+            int numberOfTries = 3;
+            do
+            {
+                if (numberOfTries != 3) Console.WriteLine("Осталось попыток: " + numberOfTries);
+
+                Console.WriteLine("Введите логин:");
+                login = Console.ReadLine();
+
+                Console.WriteLine("Введите пароль:");
+                password = Console.ReadLine();
+
+                numberOfTries--;
+            }
+            while (!CheckAuthorization() && numberOfTries != 0);
+            //while (!CheckAuthorizationFile() && numberOfTries != 0) ;
+        }
+
+        private bool CheckAuthorization()
         {
             const string login = "User";
-            const string pass = "12345";
+            const string password = "12345";
 
-            if ((this.login != login) || (this.password != pass))
+            if ((this.login != login) || (this.password != password))
             {
                 Console.WriteLine("Неверный логин или пароль!");
                 return false;
@@ -27,5 +46,10 @@ namespace Lesson2
                 return true;
             }
         }
+
+        //internal bool CheckAuthorizationFile()
+        //{
+            
+        //}
     }
 }

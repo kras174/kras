@@ -12,6 +12,7 @@ namespace Lesson2
 
         static void Main(string[] args)
         {
+            //--Задание 1 из методички
             //int a, b, c;
             //a = inData(1);
             //b = inData(2);
@@ -19,31 +20,22 @@ namespace Lesson2
             //Console.WriteLine("Минимальное из этих чисел: " + Minimum(a, b, c));
             //----------------------------------------------------------------------
 
+            //--Задание 2 из методички
             //int a;
             //a = inData(1);
             //Console.WriteLine("Колличество цифр числа равно: " + countNum(a));
             //----------------------------------------------------------------------
 
+            //--Задание 3 из методички
             //SumPosNum();
             //----------------------------------------------------------------------
 
+            //--Домашнее задание А. Авторизация пользователя
             Authorization user1 = new Authorization();
-            int numberOfTries = 3;
-            do
-            {
-                if (numberOfTries != 3) Console.WriteLine("Осталось попыток: " + numberOfTries);
-
-                Console.WriteLine("Введите логин:");
-                user1.login = Console.ReadLine();
-
-                Console.WriteLine("Введите пароль:");
-                user1.password = Console.ReadLine();
-
-                numberOfTries--;
-            }
-            while (!user1.CheckAuthorization() && numberOfTries != 0);
-
+            user1.startAuthorization();
             Console.WriteLine("Нажмите любую клавишу...");
+            //----------------------------------------------------------------------
+
             Console.ReadLine();
         }
 
