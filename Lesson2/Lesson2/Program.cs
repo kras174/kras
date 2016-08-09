@@ -43,6 +43,11 @@ namespace Lesson2
             //Calculator(a,b);
             //----------------------------------------------------------------------
 
+            //--Домашнее задание D. Перевод числа из десятичной системы счисления в двоичную.
+            //int a;
+            //a = inData(1);
+            //Substitution(a);
+
 
             Console.ReadLine();
         }
@@ -138,6 +143,29 @@ namespace Lesson2
                 else Console.WriteLine("На ноль делить нельзя!");
             }
             else Console.WriteLine("Нет такой операции!");
+        }
+
+        //-----Перевод числа из десятичной системы счисления в двоичную. "Алгоритм замещения".
+        static void Substitution (double n)
+        {
+            string result = string.Empty;
+
+            do
+            {
+                if (n % 2 == 1) result += 1;
+                else result += 0;
+                n = Math.Truncate(n / 2);
+            }
+            while (n != 1);
+            result += 1;
+
+            Console.WriteLine("Результат перевода числа в двоичную систему счисления: " + result);
+        }
+
+        //-----Программу, печатающая все подмножества множества {1, 2,...,N}.
+        static void Subset(int n)
+        {
+        
         }
     }
 }
