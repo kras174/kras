@@ -10,6 +10,11 @@ namespace Lesson_1
     {
         static void Main(string[] args)
         {
+            var num = 0;
+            int x, y, payMonth;
+            string name, surname, year, city, growth, weight, result;
+
+
             Console.WriteLine("Домашнее задание для урока №1:");
             while (true)
             {
@@ -19,13 +24,12 @@ namespace Lesson_1
                 Console.WriteLine("2. Анкета.");
                 Console.WriteLine("3. Данные о зарплате.");
 
-                var num = 0;
                 num = int.Parse(Console.ReadLine());
 
                 if (num == 1)   // расчёт суммы двух чисел
                 {
-                    int x = 0;
-                    int y = 0;
+                    x = 0;
+                    y = 0;
 
                     Console.Clear();
                     Console.WriteLine("Сумматор.");
@@ -43,7 +47,6 @@ namespace Lesson_1
                 }
                 else if (num == 2)  // Анкета
                 {
-                    string name, surname, year, city, growth, weight;
 
                     Console.Clear();
                     Console.WriteLine("Анкета.");
@@ -66,8 +69,11 @@ namespace Lesson_1
                     Console.WriteLine("Введите вес:");
                     weight = Console.ReadLine();
 
-                    Console.WriteLine();
-                    Console.WriteLine("Введённые данные: " + surname + " " + name + ", Возраст: " + year + ", Город рождения: " + city + ", рост " + growth + ", вес " + weight);
+                    //Console.WriteLine();
+                    //Console.WriteLine("Введённые данные: " + surname + " " + name + ", Возраст: " + year + ", Город рождения: " + city + ", рост: " + growth + ", вес: " + weight);
+
+                    result = string.Format("Введённые данные: {0} {5}, Возраст: {1}, Город рождения: {2}, рост: {3}, вес: {4}", surname, year, city, growth, weight, name);
+                    Console.WriteLine(result);
 
                     Console.WriteLine("Нажмите любую клавишу для продолжения...");
                     Console.ReadLine();
@@ -76,8 +82,8 @@ namespace Lesson_1
                 }
                 else if (num == 3)  // Расчёт зарплаты
                 {
-                    int payMonth = 0;
-                    var n = 0;
+                    payMonth = 0;
+                    num = 0;
 
                     Console.Clear();
                     Console.WriteLine("Данные о зарплате.");
@@ -91,9 +97,9 @@ namespace Lesson_1
                     Console.WriteLine("4. Час.");
                     Console.WriteLine("5. Минута.");
 
-                    n = int.Parse(Console.ReadLine());
+                    num = int.Parse(Console.ReadLine());
 
-                    switch (n)
+                    switch (num)
                     {
                         case 1:
                             Console.WriteLine("Зарплата за год: " + Pay(n, payMonth));
@@ -130,11 +136,17 @@ namespace Lesson_1
 
         static float Pay(int n, float p)    // Функция расчёта зарплаты по введённым данным
         {
-            if (n == 1) p = p * 12;
-            else if (n == 2) p = p / 4;
-            else if (n == 3) p = p / 28;
-            else if (n == 4) p = p / 672;
-            else if (n == 5) p = p / 40320;
+            const int weeksInMonth = 4;
+            const int monthsInYear = 12;
+            const int daysInWeek = 7;
+            const int hoursInDay = 24;
+            const int minutesInHour = 60;
+
+            if (n == 1) p = p * monthsInYear;
+            else if (n == 2) p = p / weeksInMonth;
+            else if (n == 3) p = p / weeksInMonth * daysInWeek;
+            else if (n == 4) p = p / weeksInMonth * daysInWeek * hoursInDay;
+            else if (n == 5) p = p / weeksInMonth * daysInWeek * hoursInDay * minutesInHour;
 
             return p;
         }
