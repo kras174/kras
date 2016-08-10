@@ -48,6 +48,17 @@ namespace Lesson2
             //a = inData(1);
             //Substitution(a);
 
+            //--Домашнее задание C. Реализовать собственную структуру «Дата».
+
+            //Console.WriteLine("Выберите пункт меню: ");
+            //Console.WriteLine("1. Показать текущую дату и время.");
+            //Console.WriteLine("2. Разница между двумя датами.");
+            //Console.WriteLine("3. Определение високосного года.");
+            //Console.WriteLine("4. Прибавление к дате определенного числа дней.");
+
+            //int n = Convert.ToInt32(Console.ReadLine());
+
+            //MyData date1 = new MyData(n);
 
             Console.ReadLine();
         }
@@ -148,18 +159,26 @@ namespace Lesson2
         //-----Перевод числа из десятичной системы счисления в двоичную. "Алгоритм замещения".
         static void Substitution (double n)
         {
-            string result = string.Empty;
+            var result = new List<int>();
+            string resultGood = string.Empty;
 
             do
             {
-                if (n % 2 == 1) result += 1;
-                else result += 0;
+                if (n % 2 == 1) result.Add(1);
+                else result.Add(0);
                 n = Math.Truncate(n / 2);
             }
             while (n != 1);
-            result += 1;
+            result.Add(1);
 
-            Console.WriteLine("Результат перевода числа в двоичную систему счисления: " + result);
+            int listLength = result.Count;
+
+            for (int i = listLength-1; i >= 0; i--)
+            {
+                resultGood += result[i];
+            }
+
+            Console.WriteLine("Результат перевода числа в двоичную систему счисления: " + resultGood);
         }
 
         //-----Программу, печатающая все подмножества множества {1, 2,...,N}.
