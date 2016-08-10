@@ -46,19 +46,19 @@ namespace Lesson2
             //--Домашнее задание D. Перевод числа из десятичной системы счисления в двоичную.
             //int a;
             //a = inData(1);
-            //Substitution(a);
+            //Console.WriteLine("Результат перевода числа в двоичную систему счисления: " + Substitution(a));
 
             //--Домашнее задание C. Реализовать собственную структуру «Дата».
 
-            //Console.WriteLine("Выберите пункт меню: ");
-            //Console.WriteLine("1. Показать текущую дату и время.");
-            //Console.WriteLine("2. Разница между двумя датами.");
-            //Console.WriteLine("3. Определение високосного года.");
-            //Console.WriteLine("4. Прибавление к дате определенного числа дней.");
+            Console.WriteLine("Выберите пункт меню: ");
+            Console.WriteLine("1. Показать текущую дату и время.");
+            Console.WriteLine("2. Разница между двумя датами.");
+            Console.WriteLine("3. Определение високосного года.");
+            Console.WriteLine("4. Прибавление к дате определенного числа дней.");
 
-            //int n = Convert.ToInt32(Console.ReadLine());
+            int n = Convert.ToInt32(Console.ReadLine());
 
-            //MyData date1 = new MyData(n);
+            MyData date1 = new MyData(n);
 
             Console.ReadLine();
         }
@@ -157,7 +157,7 @@ namespace Lesson2
         }
 
         //-----Перевод числа из десятичной системы счисления в двоичную. "Алгоритм замещения".
-        static void Substitution (double n)
+        static string Substitution (double n)
         {
             var result = new List<int>();
             string resultGood = string.Empty;
@@ -178,13 +178,13 @@ namespace Lesson2
                 resultGood += result[i];
             }
 
-            Console.WriteLine("Результат перевода числа в двоичную систему счисления: " + resultGood);
+            return resultGood;
         }
 
-        //-----Программу, печатающая все подмножества множества {1, 2,...,N}.
+        //-----Программу, печатающая все подмножества множества {1, 2,...,N}. К сожалению не хватило времени на выполнение.
         static void Subset(int n)
         {
-        
+            
         }
     }
 }
