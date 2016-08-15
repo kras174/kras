@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lesson_4
 {
-    class Employer
+    class Employee
     {
-        int id;
-        string name;
-        string position;
-        int payment;
+        public int id;
+        public string name;
+        public string position;
+        public int payment;
         static int value;
 
         static string[] positions = { "Директор", "Зам директора", "Главный бухгалтер", "Бухгалтер", "Менеджер", "Программист", "Охранник", "Уборщица"};
@@ -19,7 +19,7 @@ namespace Lesson_4
         public static List<object> emploers = new List<object>(); //База данных всех сотрудников
 
         //-----Конструктор
-        public Employer()
+        public Employee()
         {
             Console.WriteLine("Введите полное имя сотрудника");
             name = Console.ReadLine();
@@ -51,9 +51,9 @@ namespace Lesson_4
         //-----Метод выводит полный список сотрудников, их должности и зарплаты
         static public void ShowInfo()
         {
-            foreach (Employer c in emploers)
+            foreach (Employee c in emploers)
             {
-                Console.WriteLine("Сотрудник: {0}, должность: {1}, зарплата: {2} рублей.", c.name, c.position, c.payment);
+                Console.WriteLine("{0}, должность: {1}, зарплата: {2} рублей.", c.name, c.position, c.payment);
             }
 
         }
@@ -68,7 +68,7 @@ namespace Lesson_4
             while (true)
             {
                 Console.WriteLine("Выберите сотрудника из списка чью должность вы хотите изменить:");
-                foreach (Employer c in emploers)
+                foreach (Employee c in emploers)
                 {
                     Console.WriteLine("{0}. {1}", count, c.name);
                     count++;
@@ -87,7 +87,7 @@ namespace Lesson_4
                 else { Console.WriteLine("Должность сотрудника должна быть введена в виде числа."); }
             }
 
-            foreach (Employer c in emploers)
+            foreach (Employee c in emploers)
             {
                 if (emploerNumber == c.id)
                 {
@@ -107,7 +107,7 @@ namespace Lesson_4
             while (true)
             {
                 Console.WriteLine("Выберите сотрудника из списка чью зарплату вы хотите изменить:");
-                foreach (Employer c in emploers)
+                foreach (Employee c in emploers)
                 {
                     Console.WriteLine("{0}. {1}", count, c.name);
                     count++;
@@ -122,7 +122,7 @@ namespace Lesson_4
                 else { Console.WriteLine("Зарплата сотрудника должна быть введена в виде числа."); }
             }
 
-            foreach (Employer c in emploers)
+            foreach (Employee c in emploers)
             {
                 if (emploerNumber == c.id)
                 {
@@ -137,14 +137,14 @@ namespace Lesson_4
         {
             int averagePayment = 0;
 
-            foreach (Employer c in emploers)
+            foreach (Employee c in emploers)
             {
                 averagePayment += c.payment;
             }
 
             averagePayment = averagePayment / emploers.Count;
 
-            Console.WriteLine("Средняя зарплата всех сотрудников равна: {0}", averagePayment);
+            Console.WriteLine("Средняя зарплата всех сотрудников равна: {0} рублей.", averagePayment);
         }
 
         //-----Метод проверяет введено ли число в консоль и записывает его в value
