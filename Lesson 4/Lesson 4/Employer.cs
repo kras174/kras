@@ -8,12 +8,13 @@ namespace Lesson_4
 {
     class Employer
     {
+        int id;
         string name;
         string position;
         int payment;
-        int value;
+        static int value;
 
-        string[] positions = { "Директор", "Зам директора", "Главный бухгалтер", "Бухгалтер", "Менеджер", "Программист", "Охранник", "Уборщица"};
+        static string[] positions = { "Директор", "Зам директора", "Главный бухгалтер", "Бухгалтер", "Менеджер", "Программист", "Охранник", "Уборщица"};
 
         public static List<object> emploers = new List<object>();
 
@@ -24,10 +25,10 @@ namespace Lesson_4
 
             while (true)
             {
-                Console.WriteLine("Выберите должность сотрудника из списка: \n");
+                Console.WriteLine("Выберите должность сотрудника из списка:");
                 for(var i=0;i<=positions.Length-1;i++)
                 {
-                    Console.WriteLine("{0}. {1}.\n", i + 1, positions[i]);
+                    Console.WriteLine("{0}. {1}.", i + 1, positions[i]);
                 }
                 if (ifNum()) { position = positions[value-1]; break; }
                 else { Console.WriteLine("Должность сотрудника должна быть введена в виде числа."); }
@@ -40,7 +41,10 @@ namespace Lesson_4
                 else { Console.WriteLine("Зарплата сотрудника должна быть введена в виде числа."); }
             }
 
+
             emploers.Add(this);
+
+            id = emploers.Count;
         }
 
         static public void ShowInfo()
@@ -50,21 +54,83 @@ namespace Lesson_4
                 Console.WriteLine(" ");
                 Console.WriteLine("Сотрудник: {0}, должность: {1}, зарплата: {2} рублей.", c.name, c.position, c.payment);
                 Console.WriteLine(" ");
+            }
 
+        }
+
+        static public void ChangePosition()
+        {
+            int emploerNumber;
+            string newPosition;
+            int count = 1;
+
+            while (true)
+            {
+                Console.WriteLine("Выберите сотрудника из списка чью должность вы хотите изменить:");
+                foreach (Employer c in emploers)
+                {
+                    Console.WriteLine("{0}. {1}", count, c.name);
+                    count++;
+                }
+                if (ifNum()) { emploerNumber = value; break; }
+                else { Console.WriteLine("Должность сотрудника должна быть введена в виде числа."); }
+            }
+            while (true)
+            {
+                Console.WriteLine("Выберите новую должность сотрудника из списка:");
+                for (var i = 0; i <= positions.Length - 1; i++)
+                {
+                    Console.WriteLine("{0}. {1}.", i + 1, positions[i]);
+                }
+                if (ifNum()) { newPosition = positions[value - 1]; break; }
+                else { Console.WriteLine("Должность сотрудника должна быть введена в виде числа."); }
+            }
+
+            foreach (Employer c in emploers)
+            {
+                if (emploerNumber == c.id)
+                {
+                    c.position = newPosition;
+                    break;
+                }
             }
         }
 
-        public void ChangePosition()
+        static public void ChangePayment()
         {
+            int emploerNumber;
+            int newPayment;
+            int count = 1;
 
+            while (true)
+            {
+                Console.WriteLine("Выберите сотрудника из списка чью зарплату вы хотите изменить:");
+                foreach (Employer c in emploers)
+                {
+                    Console.WriteLine("{0}. {1}", count, c.name);
+                    count++;
+                }
+                if (ifNum()) { emploerNumber = value; break; }
+                else { Console.WriteLine("Должность сотрудника должна быть введена в виде числа."); }
+            }
+            while (true)
+            {
+                Console.WriteLine("Введите новую зарплату сотрудника:");
+                if (ifNum()) { newPayment = value; break; }
+                else { Console.WriteLine("Зарплата сотрудника должна быть введена в виде числа."); }
+            }
+
+            foreach (Employer c in emploers)
+            {
+                if (emploerNumber == c.id)
+                {
+                    c.payment = newPayment;
+                    break;
+                }
+            }
         }
 
-        public void ChqngePayment()
-        {
-
-        }
-
-        private bool ifNum()
+        static private bool ifNum()
         {
             string a = string.Empty;
             int i;
