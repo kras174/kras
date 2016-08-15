@@ -12,17 +12,10 @@ namespace Lesson_4
         {
 
             Employer worker1 = new Employer();
-            //Employer worker2 = new Employer();
+            Employer worker2 = new Employer();
 
             Employer.ShowInfo();
-
-            Employer.ChangePosition();
-
-            Employer.ShowInfo();
-
-            Employer.ChangePayment();
-
-            Employer.ShowInfo();
+            Employer.AveragePayment();
 
             Console.ReadKey();
         }

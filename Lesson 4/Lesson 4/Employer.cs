@@ -16,8 +16,9 @@ namespace Lesson_4
 
         static string[] positions = { "Директор", "Зам директора", "Главный бухгалтер", "Бухгалтер", "Менеджер", "Программист", "Охранник", "Уборщица"};
 
-        public static List<object> emploers = new List<object>();
+        public static List<object> emploers = new List<object>(); //База данных всех сотрудников
 
+        //-----Конструктор
         public Employer()
         {
             Console.WriteLine("Введите полное имя сотрудника");
@@ -47,17 +48,17 @@ namespace Lesson_4
             id = emploers.Count;
         }
 
+        //-----Метод выводит полный список сотрудников, их должности и зарплаты
         static public void ShowInfo()
         {
             foreach (Employer c in emploers)
             {
-                Console.WriteLine(" ");
                 Console.WriteLine("Сотрудник: {0}, должность: {1}, зарплата: {2} рублей.", c.name, c.position, c.payment);
-                Console.WriteLine(" ");
             }
 
         }
 
+        //-----Метод позволяет изменить должность любого сотрудника из списка
         static public void ChangePosition()
         {
             int emploerNumber;
@@ -96,6 +97,7 @@ namespace Lesson_4
             }
         }
 
+        //-----Метод позволяет изменить зарплату любого сотрудника из списка
         static public void ChangePayment()
         {
             int emploerNumber;
@@ -130,6 +132,22 @@ namespace Lesson_4
             }
         }
 
+        //-----Метод расчитывает среднюю зарплату сотрудников
+        static public void AveragePayment()
+        {
+            int averagePayment = 0;
+
+            foreach (Employer c in emploers)
+            {
+                averagePayment += c.payment;
+            }
+
+            averagePayment = averagePayment / emploers.Count;
+
+            Console.WriteLine("Средняя зарплата всех сотрудников равна: {0}", averagePayment);
+        }
+
+        //-----Метод проверяет введено ли число в консоль и записывает его в value
         static private bool ifNum()
         {
             string a = string.Empty;
