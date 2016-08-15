@@ -132,7 +132,7 @@ namespace Lesson_4
             }
         }
 
-        //-----Метод расчитывает среднюю зарплату сотрудников
+        //-----Метод расчитывает средний уровень заработной платы
         static public void AveragePayment()
         {
             int averagePayment = 0;
