@@ -13,18 +13,123 @@ namespace Lesson_5
         {
             string login = string.Empty;
             string password = string.Empty;
+            string message = string.Empty;
 
+            //---Задание 1 домашней работы
             //Console.WriteLine("Введите логин");
             //login = Console.ReadLine();
             //CheckLogin(login);
             //CheckLoginReg(login);
 
-            Console.WriteLine("Введите пароль");
-            password = Console.ReadLine();
+            //---Задание 1.1 домашней работы
+            //Console.WriteLine("Введите пароль");
+            //password = Console.ReadLine();
+            //CheckPassword(password);
 
-            CheckPassword(password);
+            Console.WriteLine("Введите сообщение");
+            message = Console.ReadLine();
 
-            Console.ReadKey();
+            Console.WriteLine();
+            Console.WriteLine("Что хотим сделать с сообщением:");
+            Console.WriteLine("1. Вывести только те слова сообщения, которые содержат не более чем n букв;");
+            Console.WriteLine("2. Удалить из сообщения все слова, которые заканчиваются на заданный символ;");
+            Console.WriteLine("3. Найти самое длинное слово сообщения;");
+            Console.WriteLine("4. Найти все самые длинные слова сообщения.");
+
+            try
+            {
+                int num = int.Parse(Console.ReadLine());
+
+                switch(num)
+                {
+                    case 1:
+                        NoLongerThenN(message);
+                        break;
+                    case 2:
+                        DeleteThatEndsOnN(message);
+                        break;
+                    case 3:
+                        LongerWord(message);
+                        break;
+                    default:
+                        AllLongerWords(message);
+                        break;
+                }
+            }
+            catch { }
+
+            Console.ReadLine();
+        }
+
+        //-----Самые длинные слова сообщения;
+        private static void AllLongerWords(string message)
+        {
+            string[] words = message.Split(' ');
+            string longestWords = string.Empty;
+            int count = 0;
+
+            Console.Clear();
+            for (int i = 0; i <= words.Length - 1; i++)
+            {
+                if (words[i].Length > count) count = words[i].Length;
+            }
+
+            for (int i = 0; i <= words.Length - 1; i++)
+            {
+                if (words[i].Length == count) longestWords += words[i] + ' ';
+            }
+
+            Console.WriteLine("Все самые длинные слова: {0}", longestWords);
+        }
+        //-----Самое длинное слово сообщения;
+        private static void LongerWord(string message)
+        {
+            string[] words = message.Split(' ');
+            string longestWord = string.Empty;
+            int count = 0;
+
+            Console.Clear();
+            for (int i = 0; i <= words.Length - 1; i++)
+            {
+                if (words[i].Length > count) longestWord = words[i]; count = words[i].Length;
+            }
+
+            Console.WriteLine("Самое длинное слово: {0}", longestWord);
+        }
+
+        //-----Удаляет из сообщения все слова, которые заканчиваются на заданный символ;
+        private static void DeleteThatEndsOnN(string message)
+        {
+            string[] words = message.Split(' ');
+            string newMessage = string.Empty;
+
+            Console.Clear();
+            Console.WriteLine("Введите символ: ");
+            var n = Console.ReadLine();
+
+            for (int i = 0; i <= words.Length-1; i++)
+            {
+                if (!words[i].EndsWith(n.ToString())) newMessage += words[i] + ' ';
+            }
+
+            Console.WriteLine(newMessage);
+        }
+
+        //-----Выводит только те слова сообщения, которые содержат не более чем n букв;
+        private static void NoLongerThenN(string message)
+        {
+            string[] words = message.Split(' ');
+
+            Console.Clear();
+            Console.WriteLine("Введите число букв: ");
+            var n = int.Parse(Console.ReadLine());
+
+            //Regex rule = new Regex(@"^\w*{0,3}$");
+
+            for (int i=0;i<=words.Length;i++)
+            {
+                if (words[i].Length <= n) Console.WriteLine(words[i]);
+            }
         }
 
         //-----Метод проверяет сложность пароля
@@ -42,6 +147,7 @@ namespace Lesson_5
             if (level1.IsMatch(password)) Console.WriteLine("Уровень пароля 1");
             else if (level2.IsMatch(password)) Console.WriteLine("Уровень пароля 2");
             else if (level3.IsMatch(password)) Console.WriteLine("Уровень пароля 3");
+            else Console.WriteLine("Неверный пароль!");
 
         }
 
