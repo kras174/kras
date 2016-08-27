@@ -13,94 +13,59 @@ namespace Leeson_7
 {
     public partial class Form1 : Form
     {
+        List<string> filePaths = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
-
-            DirectoryInfo di = new DirectoryInfo(@"E:\C# Lessons\N7\files\");
-
-            var files = di.GetFiles("*.txt", SearchOption.AllDirectories);
-
-            cbAllFiles.Items.Clear();
-            cbAllFiles.Items.AddRange(files.Select(x => x.FullName).ToArray());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChooseDir_Click(object sender, EventArgs e)
         {
-            FileInfo fi = new FileInfo(@"E:\C# Lessons\N7\files\file.txt");
 
-            string allData = string.Empty;
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                lbAllFilesInDir.Items.Clear();
+                tbChoosenFile.Clear();
 
-            if (!fi.Exists)
-                fi.Create();
+                var dirPath = folderBrowserDialog1.SelectedPath;
+
+                DirectoryInfo di = new DirectoryInfo(dirPath);
+
+                FileInfo[] files;
+
+                string[] fileTypeArr = { "*.txt", "*.rar", "*.mp4", "*.*" };
+                string fileType = "*.txt";
+
+                if (radioButton1.Checked) fileType = fileTypeArr[0];
+                else if (radioButton2.Checked) fileType = fileTypeArr[1];
+                else if (radioButton3.Checked) fileType = fileTypeArr[2];
+                else if (radioButton4.Checked) fileType = fileTypeArr[3];
+
+                if (cbInputFolders.Checked)
+                    files = di.GetFiles(fileType, SearchOption.AllDirectories);
+                else
+                    files = di.GetFiles(fileType, SearchOption.TopDirectoryOnly);
+                
+                lbAllFilesInDir.Items.AddRange(files.Select(x => x.Name).ToArray());
+                filePaths.AddRange(files.Select(x => x.FullName).ToArray());
+                lbStatus.Text = "Директория просканирована! Файлы в списке.";
+                return;
+            }
+            MessageBox.Show("Директория не выбрана!", "Директория не выбрана!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void lbAllFilesInDir_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FileInfo fi = new FileInfo(filePaths[lbAllFilesInDir.SelectedIndex]);
+
+            lbFilePath.Text = filePaths[lbAllFilesInDir.SelectedIndex];
 
             using (var fileStream = fi.OpenRead())
+            using (var sr = new StreamReader(fileStream))
             {
-                byte[] buffer = new byte[2048];
-                int i = 0;
-                int n = 0;
-
-                while ((n = fileStream.ReadByte()) > 0)
-                {
-                    buffer[i] = (byte)n;
-                    i++;
-                }
-
-                allData = Encoding.UTF8.GetString(buffer);
+                tbChoosenFile.Text = sr.ReadLine();
             }
-
-            MessageBox.Show(allData, "Файл прочитан!", MessageBoxButtons.OK);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string data = "testData";
-
-            using (var file = File.Create(@"E:\C# Lessons\N7\files\fileCreateTest.txt"))
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(data);
-                file.Write(buffer, 0, buffer.Length);
-            }
-        }
-
-        private void ChooseFile_button_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Multiselect = false;
-            openFileDialog1.CheckFileExists = true;
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog1.InitialDirectory = @"E:\";
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.FileName = "";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string fileContent = string.Empty;
-
-                using (var fileStream = File.OpenRead(openFileDialog1.FileName))
-                using (var sr = new StreamReader(fileStream))
-                    fileContent = sr.ReadLine();
-
-                MessageBox.Show(fileContent, "Файл прочитан!", MessageBoxButtons.OK);
-                return;
-            }
-            MessageBox.Show("Файл не выбран!", "Файл не выбран!", MessageBoxButtons.OK,MessageBoxIcon.Error);
-        }
-
-        private void btnReadSelectedFile_Click(object sender, EventArgs e)
-        {
-            if (cbAllFiles.SelectedIndex != -1)
-            {
-                string fileContent = string.Empty;
-
-                using (var fileStream = File.OpenRead((string)cbAllFiles.SelectedItem))
-                using (var sr = new StreamReader(fileStream))
-                    fileContent = sr.ReadLine();
-
-                MessageBox.Show(fileContent, "Файл прочитан!", MessageBoxButtons.OK);
-                return;
-            }
-
-            MessageBox.Show("Файл не выбран!", "Файл не выбран!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
