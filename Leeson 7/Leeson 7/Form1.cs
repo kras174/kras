@@ -36,6 +36,7 @@ namespace Leeson_7
                 while ((n = fileStream.ReadByte()) > 0)
                 {
                     buffer[i] = (byte)n;
+                    i++;
                 }
 
                 allData = Encoding.UTF8.GetString(buffer);
@@ -46,12 +47,36 @@ namespace Leeson_7
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string data = "testData";
 
+            using (var file = File.Create(@"E:\C# Lessons\N7\files\fileCreateTest.txt"))
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes(data);
+                file.Write(buffer, 0, buffer.Length);
+            }
         }
 
-        private void btnChoseDirectory_Click(object sender, EventArgs e)
+        private void ChooseFile_button_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog1.InitialDirectory = @"E:\";
+            openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.FileName = "";
 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileContent = string.Empty;
+
+                using (var fileStream = File.OpenRead(openFileDialog1.FileName))
+                using (var sr = new StreamReader(fileStream))
+                    fileContent = sr.ReadLine();
+
+                MessageBox.Show(fileContent, "Файл прочитан!", MessageBoxButtons.OK);
+                return;
+            }
+            MessageBox.Show("Файл невыбран!", "Файл невыбран!", MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
     }
 }
