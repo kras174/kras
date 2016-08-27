@@ -16,6 +16,13 @@ namespace Leeson_7
         public Form1()
         {
             InitializeComponent();
+
+            DirectoryInfo di = new DirectoryInfo(@"E:\C# Lessons\N7\files\");
+
+            var files = di.GetFiles("*.txt", SearchOption.AllDirectories);
+
+            cbAllFiles.Items.Clear();
+            cbAllFiles.Items.AddRange(files.Select(x => x.FullName).ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,7 +83,24 @@ namespace Leeson_7
                 MessageBox.Show(fileContent, "Файл прочитан!", MessageBoxButtons.OK);
                 return;
             }
-            MessageBox.Show("Файл невыбран!", "Файл невыбран!", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            MessageBox.Show("Файл не выбран!", "Файл не выбран!", MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+
+        private void btnReadSelectedFile_Click(object sender, EventArgs e)
+        {
+            if (cbAllFiles.SelectedIndex != -1)
+            {
+                string fileContent = string.Empty;
+
+                using (var fileStream = File.OpenRead((string)cbAllFiles.SelectedItem))
+                using (var sr = new StreamReader(fileStream))
+                    fileContent = sr.ReadLine();
+
+                MessageBox.Show(fileContent, "Файл прочитан!", MessageBoxButtons.OK);
+                return;
+            }
+
+            MessageBox.Show("Файл не выбран!", "Файл не выбран!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
