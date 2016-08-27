@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnReadSelectedFile = new System.Windows.Forms.Button();
             this.btnChooseDir = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.lbStatus = new System.Windows.Forms.Label();
@@ -44,28 +42,9 @@
             this.tbChoosenFile = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 309);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 28);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "ReadDataFromFile";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnReadSelectedFile
-            // 
-            this.btnReadSelectedFile.Location = new System.Drawing.Point(163, 314);
-            this.btnReadSelectedFile.Name = "btnReadSelectedFile";
-            this.btnReadSelectedFile.Size = new System.Drawing.Size(108, 23);
-            this.btnReadSelectedFile.TabIndex = 6;
-            this.btnReadSelectedFile.Text = "Read Selected File";
-            this.btnReadSelectedFile.UseVisualStyleBackColor = true;
             // 
             // btnChooseDir
             // 
@@ -113,6 +92,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "txt";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -123,6 +103,7 @@
             this.radioButton2.TabIndex = 12;
             this.radioButton2.Text = "rar";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -133,6 +114,7 @@
             this.radioButton3.TabIndex = 13;
             this.radioButton3.Text = "mp4";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -143,6 +125,7 @@
             this.radioButton4.TabIndex = 14;
             this.radioButton4.Text = "All Files";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // lbAllFilesInDir
             // 
@@ -168,7 +151,7 @@
             this.tbChoosenFile.Location = new System.Drawing.Point(15, 212);
             this.tbChoosenFile.Multiline = true;
             this.tbChoosenFile.Name = "tbChoosenFile";
-            this.tbChoosenFile.Size = new System.Drawing.Size(256, 91);
+            this.tbChoosenFile.Size = new System.Drawing.Size(256, 125);
             this.tbChoosenFile.TabIndex = 17;
             // 
             // Form1
@@ -186,8 +169,6 @@
             this.Controls.Add(this.cbInputFolders);
             this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.btnChooseDir);
-            this.Controls.Add(this.btnReadSelectedFile);
-            this.Controls.Add(this.button1);
             this.MaximumSize = new System.Drawing.Size(1000, 600);
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "Form1";
@@ -198,9 +179,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnReadSelectedFile;
         private System.Windows.Forms.Button btnChooseDir;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label lbStatus;

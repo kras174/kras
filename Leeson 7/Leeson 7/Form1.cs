@@ -67,5 +67,34 @@ namespace Leeson_7
                 tbChoosenFile.Text = sr.ReadLine();
             }
         }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            lbAllFilesInDir.Items.Clear();
+            tbChoosenFile.Clear();
+
+            var dirPath = folderBrowserDialog1.SelectedPath;
+
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+
+            FileInfo[] files;
+
+            string[] fileTypeArr = { "*.txt", "*.rar", "*.mp4", "*.*" };
+            string fileType = "*.txt";
+
+            if (radioButton1.Checked) fileType = fileTypeArr[0];
+            else if (radioButton2.Checked) fileType = fileTypeArr[1];
+            else if (radioButton3.Checked) fileType = fileTypeArr[2];
+            else if (radioButton4.Checked) fileType = fileTypeArr[3];
+
+            if (cbInputFolders.Checked)
+                files = di.GetFiles(fileType, SearchOption.AllDirectories);
+            else
+                files = di.GetFiles(fileType, SearchOption.TopDirectoryOnly);
+
+            lbAllFilesInDir.Items.AddRange(files.Select(x => x.Name).ToArray());
+            filePaths.AddRange(files.Select(x => x.FullName).ToArray());
+            lbStatus.Text = "Директория просканирована! Файлы в списке.";
+        }
     }
 }
