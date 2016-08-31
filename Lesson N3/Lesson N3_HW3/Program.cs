@@ -17,8 +17,8 @@ namespace Lesson_N3_HW3
         {
             //Оболочку для программы написать не успел, поэтому задаю дроби прям в коде:
 
-            Fraction fr1 = new Fraction(2, 5);
-            Fraction fr2 = new Fraction(5, 8);
+            Fraction fr1 = new Fraction(2, 8);
+            Fraction fr2 = new Fraction(5, 6);
 
             var result = fr1 + fr2;
             Console.WriteLine(result.ToString());
