@@ -24,6 +24,16 @@ namespace Lesson_N4_HW2
             for (int i = 0; i < n; i++)
                 a[i] = rnd.Next(min, max);
         }
+        //---Домашнее задание 2---Создание массива и заполнение его числами от начального значения с заданным шагом
+        public MyArray(int n, int min, string step)
+        {
+            int stepInt;
+            a = new int[n];
+            a[0] = min;
+            int.TryParse(step, out stepInt); 
+            for (int i = 1; i < n; i++)
+                a[i] = a[i-1] + stepInt;
+        }
         //---Из методички---Свойство получает максимальный элемент массива
         public int Max
         {
@@ -79,5 +89,30 @@ namespace Lesson_N4_HW2
                 return count;
             }
         }
+        //---Домашнее задание 2---Свойство получает сумму элементов массива
+        public int Sum
+        {
+            get
+            {
+                int sum = a[0];
+                for (int i = 1; i < a.Length; i++)
+                    sum += a[i];
+                return sum;
+            }
+        }
+        //---Домашнее задание 2---Метод меняет знаки у всех элементов массива
+        public void Inverse()
+        {
+            for (int i = 0; i < a.Length; i++)
+                a[i] *= -1;
+        }
+        //---Домашнее задание 2---Метод умножает каждый элемент массива на заданное число
+        public void Multi(int n)
+        {
+            for (int i = 0; i < a.Length; i++)
+                a[i] *= n;
+        }
+
+
     }
 }

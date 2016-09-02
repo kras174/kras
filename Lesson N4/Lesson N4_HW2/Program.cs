@@ -16,8 +16,17 @@ namespace Lesson_N4_HW2
     {
         static void Main(string[] args)
         {
-            MyArray a = new MyArray(10, 0, 100);
-            Console.WriteLine(a.CountPairs);
+            MyArray a = new MyArray(10, 2, "5");
+            Console.WriteLine(a.ToString());
+
+            Console.WriteLine("Количество пар элементов массива, в которых хотя бы одно число делится на 3 = {0}", a.CountPairs);
+            Console.WriteLine("Сумма элементов массива = {0}", a.Sum);
+
+            a.Inverse();
+            Console.WriteLine(a.ToString());
+
+            a.Multi(10);
+            Console.WriteLine(a.ToString());
 
             Console.ReadKey();
         }
