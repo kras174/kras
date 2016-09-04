@@ -112,6 +112,27 @@ namespace Lesson_N4_HW2
             for (int i = 0; i < a.Length; i++)
                 a[i] *= n;
         }
+        //---Домашнее задание 2---Свойство, возвращающее количество максимальных элементов.
+        public int MaxCount
+        {
+            get
+            {
+                int count = 0;
+
+                for (int i = 0; i < a.Length; i++)
+                    if (a[i] == a.Max()) count++;
+                return count;
+            }
+        }
+        //---Домашнее задание 2---Метод, возвращающий количество максимальных элементов.
+        public int MaxCounter ()
+        {
+            int count = 0;
+
+            for (int i = 0; i < a.Length; i++)
+                if (a[i] == a.Max()) count++;
+            return count;
+        }
 
 
     }
