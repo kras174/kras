@@ -16,8 +16,13 @@ namespace Lesson_N4_HW4
 
         static void Main(string[] args)
         {
-            Matrix a = new Matrix(10,10);
+            Matrix a = new Matrix(5,4);
             a.Print();
+            Console.WriteLine("Сумма всех элементов массива равна: {0}", a.AllSum());
+            Console.WriteLine("Сумма всех элементов массива больше 5 равна: {0}", a.AllSum(5));
+            Console.WriteLine("Минимальный элемент массива: {0}", a.Min);
+            Console.WriteLine("Максимальный элемент массива: {0}", a.Max);
+            Console.WriteLine("Номер максимального элемента массива: {0}", a.NumMax());
             Console.ReadKey();
         }
     }
