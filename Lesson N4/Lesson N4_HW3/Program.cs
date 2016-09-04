@@ -66,6 +66,7 @@ namespace Lesson_N4_HW3
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("Можно вводить только цифры!");
                     Console.WriteLine(ex.Message);
                 }
             }
