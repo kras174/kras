@@ -62,7 +62,7 @@ namespace Lesson_5
         }
 
         //-----Самые длинные слова сообщения;
-        private static void AllLongerWords(string message)
+        public void AllLongerWords(string message)
         {
             string[] words = message.Split(' ');
             string longestWords = string.Empty;
@@ -82,7 +82,7 @@ namespace Lesson_5
             Console.WriteLine("Все самые длинные слова: {0}", longestWords);
         }
         //-----Самое длинное слово сообщения;
-        private static void LongerWord(string message)
+        public void LongerWord(string message)
         {
             string[] words = message.Split(' ');
             string longestWord = string.Empty;
@@ -98,7 +98,7 @@ namespace Lesson_5
         }
 
         //-----Удаляет из сообщения все слова, которые заканчиваются на заданный символ;
-        private static void DeleteThatEndsOnN(string message)
+        public void DeleteThatEndsOnN(string message)
         {
             string[] words = message.Split(' ');
             string newMessage = string.Empty;
@@ -116,7 +116,7 @@ namespace Lesson_5
         }
 
         //-----Выводит только те слова сообщения, которые содержат не более чем n букв;
-        private static void NoLongerThenN(string message)
+        public void NoLongerThenN(string message)
         {
             string[] words = message.Split(' ');
 
@@ -133,7 +133,7 @@ namespace Lesson_5
         }
 
         //-----Метод проверяет сложность пароля
-        private static void CheckPassword(string password)
+        public void CheckPassword(string password)
         {
             /* Пароль должен быть от 3х символов и до 10
              * Пароль первой сложности только буквы или цифры
@@ -152,16 +152,16 @@ namespace Lesson_5
         }
 
         //-----Метод проверяет регуляркой корректность ввода логина. Корректным логином будет строка от 2-х до 10-ти символов, содержащая только буквы и цифры, и при этом цифра не может быть первой.
-        private static void CheckLoginReg(string login)
+        public void CheckLoginReg(string login)
         {
-            Regex reg = new Regex(@"^\D+[a-zA-Z0-9]{2,9}$");
+            Regex reg = new Regex(@"^\D[a-zA-Z0-9]{2,9}$");
 
             if (reg.IsMatch(login)) Console.WriteLine("Верный логин!");
             else Console.WriteLine("Неверный логин!");
         }
 
         //-----Метод проверяет корректность ввода логина. Корректным логином будет строка от 2-х до 10-ти символов, содержащая только буквы и цифры, и при этом цифра не может быть первой.
-        private static void CheckLogin(string login)
+        public void CheckLogin(string login)
         {
             bool isCorrect = false;
 
@@ -173,7 +173,6 @@ namespace Lesson_5
                     if ((char.IsLetter(c) || char.IsNumber(c)))
                     {
                         isCorrect = true;
-                        continue;
                     }
                     else
                     {
